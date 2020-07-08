@@ -11,7 +11,8 @@ AWS.config.getCredentials(function(err) {
 
 var lambda = new AWS.Lambda();
 var params = {
-    FunctionName: 'my-function'
+    FunctionName: 'my-function',
+    Payload: JSON.stringify({"greeting": "Hello there, general kenobi"})
 }
 
 lambda.invoke(params, function(err, data) {

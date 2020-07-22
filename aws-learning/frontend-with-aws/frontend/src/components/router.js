@@ -16,7 +16,6 @@ class PrivateRoute extends Component {
         this.authenticate()
         this.unlisten = this.props.history.listen(() => {
             Auth.currentAuthenticatedUser()
-              .then(user => console.log('user: ', user))
               .catch(() => {
                 if (this.state.isAuthenticated) this.setState({ isAuthenticated: false })
               })

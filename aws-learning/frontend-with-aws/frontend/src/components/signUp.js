@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 
+import AccountConfirmation from './accountConfirmation'
+
 class SignUp extends React.Component {
 
     constructor() {
@@ -68,16 +70,7 @@ class SignUp extends React.Component {
                     showConfirmation && (
                         <div>
                             <p>Confirmation code sent to {this.state.email}</p>
-                            <input name="authCode" placeholder="Authentication Code" onChange={this.onChange} />
-                            <button onClick={this.confirmSignUp} >Confirm Sign Up</button>
-                        </div>
-                    )
-                }
-                {
-                    this.state.authenticationConfirmed && (
-                        <div>
-                            <p>Authentication confirmed</p>
-                            <p>Click the sign in option below to continue to sign in screen</p>
+                            <AccountConfirmation username={this.state.username} />
                         </div>
                     )
                 }

@@ -2,7 +2,10 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 
+import AccountConfirmation from './accountConfirmation'
+
 class SignIn extends React.Component {
+    
     state = {
         username: "",
         password: "",
@@ -16,6 +19,7 @@ class SignIn extends React.Component {
         e.preventDefault()
         this.setState({ [e.target.name]: e.target.value }) 
     }
+
 
     signIn = () => {
         this.setState({userNotConfirmedException: false, incorrectPassword: false})
@@ -45,7 +49,8 @@ class SignIn extends React.Component {
                 {
                     this.state.userNotConfirmedException && (
                         <div> 
-                            <p>User not confirmed using email address</p>
+                            <p>User authentication not complete, enter authentication code below to complete</p>
+                            <AccountConfirmation username={this.state.username} />
                         </div>
                     )
                 }

@@ -46,7 +46,6 @@ class AccountConfirmation extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.resendAuthenticationCode} >Resend Authentication code</button>
                 <br></br>
                 {
                     this.state.authCodeResent && (
@@ -56,7 +55,13 @@ class AccountConfirmation extends React.Component {
                     )
                 }
                 <input name="authCode" placeholder="Authentication Code" onChange={this.onChange} />
-                <button onClick={this.confirmSignUp} >Confirm Sign Up</button>
+                <br></br>
+                <button onClick={this.confirmSignUp} >Confirm Sign Up</button> 
+                <br></br>
+
+                <button onClick={this.resendAuthenticationCode} >Resend Authentication code</button>
+                <br></br>
+
                 {
                     this.state.authenticationConfirmed && (
                         <div>

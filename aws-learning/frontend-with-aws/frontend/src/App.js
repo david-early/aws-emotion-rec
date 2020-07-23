@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from './aws-exports'
 
+import './App.css'
+
 import Router from './components/router'
 
 Amplify.configure(awsconfig)

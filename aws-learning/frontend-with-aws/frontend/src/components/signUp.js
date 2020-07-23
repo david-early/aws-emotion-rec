@@ -18,7 +18,8 @@ class SignUp extends React.Component {
         phone_number: '',
         authCode: '',
         showConfirmation: false,
-        authenticationConfirmed: false
+        authenticationConfirmed: false,
+        passwordInvalidParameter: false
     }
 
     onChange = (e) => {
@@ -27,6 +28,7 @@ class SignUp extends React.Component {
     }
 
     signUp = () => {
+        this.setState({passwordInvalidParameter: false})
         const { username, password, email, phone_number } = this.state
         Auth.signUp({
           username,
@@ -37,7 +39,12 @@ class SignUp extends React.Component {
           }
         })
         .then(() => this.setState({ showConfirmation: true }))
-        .catch(err => console.log('error signing up: ', err))
+        .catch((err) => { 
+            console.log('error signing up: ', err)
+            if (err.code === "InvalidParameterException") {
+                this.setState({passwordInvalidParameter: true})
+            }
+        })
       }
 
     async confirmSignUp() {
@@ -61,6 +68,17 @@ class SignUp extends React.Component {
                             <input name="password" placeholder="password" type="password" onChange={this.onChange} />
                             <input name="email" placeholder="email" type="text" onChange={this.onChange} />
                             <input name="phone_number" placeholder="Phone Number" type="text" onChange={this.onChange} />
+
+                            {
+                                this.state.passwordInvalidParameter && (
+                                    <div>
+                                        <p>Password invalid, password must be</p>
+                                        <ul>
+                                            <li>At least 6 characters in length</li>
+                                        </ul>
+                                    </div>
+                                )
+                            }
 
                             <button onClick={this.signUp}>Sign Up</button>
                         </div>

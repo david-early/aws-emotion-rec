@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 
+import '../App.css'
+
 import AccountConfirmation from './accountConfirmation'
 
 class SignIn extends React.Component {
@@ -43,65 +45,51 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div style={{background: "white"}}>
-                <h1 style={{paddingTop: "40px", marginBottom:"0px"}}>Sign into your account</h1>
+            <div style={{background: "white", paddingBottom: "40px"}}>
+                <h1 className="authHeader">Sign into your Account</h1>
                 <form onSubmit={this.signIn}>
-                <input style={authInputs} name="username" type="text" onChange={this.onChange} placeholder="Username" />
-                <br></br>
-                <input style={authInputs} name="password" type="password" onChange={this.onChange} placeholder="Password" />
-                <br></br>
+                    <input className="authInput" name="username" type="text" onChange={this.onChange} placeholder="Username" />
+                    <br></br>
+                    <input className="authInput" name="password" type="password" onChange={this.onChange} placeholder="Password" />
+                    <br></br>
+
+
+                    {
+                        this.state.incorrectPassword && (
+                            <div>
+                                <p className="errorText">Incorrect password, please try again</p>    
+                            </div>
+                        )
+                    }
+                    {
+                        this.state.userNotFoundException && (
+                            <div>
+                                <p className="errorText">No user associated with username: {this.state.username}</p>
+                                <p className="errorText">Click the sign up button below to create an account</p>
+                            </div>
+                        )
+                    }
+
+                    <button type="submit" 
+                            className="authButton"
+                            onClick={this.signIn}>
+                            Sign In
+                    </button>
+
+                </form>
 
                 {
                     this.state.userNotConfirmedException && (
                         <div> 
-                            <p>User authentication not complete, enter authentication code below to complete account creation</p>
+                            <p className="errorText">User authentication not complete, enter authentication code below to complete account creation</p>
                             <AccountConfirmation username={this.state.username} />
                         </div>
                     )
                 }
-                {
-                    this.state.incorrectPassword && (
-                        <div>
-                            <p>Incorrect password, please try again</p>    
-                        </div>
-                    )
-                }
-                {
-                    this.state.userNotFoundException && (
-                        <div>
-                            <p>No user associated with username: {this.state.username}</p>
-                            <p>Click the sign up button below to create an account</p>
-                        </div>
-                    )
-                }
-
-                <button type="submit" style={{marginTop: "35px", 
-                                marginBottom:"35px", 
-                                width:"400px", 
-                                height:"50px", 
-                                fontSize:"20px",
-                                backgroundColor:"#1b2f33",
-                                color:"white"
-                            }} 
-                        onClick={this.signIn}>
-                        Sign In
-                </button>
-
-
-                </form>
 
             </div>
         )
     }
 }
-
-const styles = {
-    authInputs : {
-        marginTop: "40px",
-        width: "400px",
-    }
-}
-
-const { authInputs } = styles
 
 export default withRouter(SignIn)

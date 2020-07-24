@@ -59,7 +59,8 @@ const styles = {
         width: "50%",
         border: "none",
         borderTop: "1px solid",
-        borderColor: "grey"
+        borderColor: "grey",
+        fontSize: "20px"
     },
     activeMenuSwitchButton : {
         height: "60px",
@@ -67,7 +68,8 @@ const styles = {
         width: "50%",
         border: "none",
         borderTop: "1px solid",
-        borderColor: "grey"
+        borderColor: "grey",
+        fontSize: "20px"
 
     }
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 
+import '../App.css'
+
 import AccountConfirmation from './accountConfirmation'
 
 class SignUp extends React.Component {
@@ -15,11 +17,13 @@ class SignUp extends React.Component {
         username: "", 
         password: '',
         email: '',
-        phone_number: '',
+        countryCode: '+353',
+        sevenDigitPhoneNumber: '',
         authCode: '',
         showConfirmation: false,
         authenticationConfirmed: false,
-        passwordInvalidParameter: false
+        passwordTooShort: false,
+        phoneNumberIncorrectFormat: false
     }
 
     onChange = (e) => {
@@ -27,9 +31,11 @@ class SignUp extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    signUp = () => {
-        this.setState({passwordInvalidParameter: false})
-        const { username, password, email, phone_number } = this.state
+    signUp = (e) => {
+        e.preventDefault()
+        this.setState({passwordTooShort: false, phoneNumberIncorrectFormat: false})
+        const { username, password, email, countryCode, sevenDigitPhoneNumber } = this.state
+        const phone_number = countryCode + sevenDigitPhoneNumber;
         Auth.signUp({
           username,
           password,
@@ -41,8 +47,11 @@ class SignUp extends React.Component {
         .then(() => this.setState({ showConfirmation: true }))
         .catch((err) => { 
             console.log('error signing up: ', err)
-            if (err.code === "InvalidParameterException") {
-                this.setState({passwordInvalidParameter: true})
+            if (err.message.includes("Member must have length greater than or equal to 6")) {
+                this.setState({passwordTooShort: true})
+            }
+            else if (err.message.includes("Invalid phone number format")) {
+                this.setState({phoneNumberIncorrectFormat: true})
             }
         })
       }
@@ -61,26 +70,50 @@ class SignUp extends React.Component {
         const { showConfirmation } = this.state
         return (
             <div>
+                <h1 className="authHeader">Sign Up for Account</h1>
                 {
                     !showConfirmation && (
                         <div>
-                            <input name="username" placeholder="username" type="text" onChange={this.onChange} />
-                            <input name="password" placeholder="password" type="password" onChange={this.onChange} />
-                            <input name="email" placeholder="email" type="text" onChange={this.onChange} />
-                            <input name="phone_number" placeholder="Phone Number" type="text" onChange={this.onChange} />
+                            <form onSubmit={this.signUp}>
+                                <input className="authInput" name="username" placeholder="Username" type="text" onChange={this.onChange} />
+                                <br></br>
+                                <input className="authInput" name="password" placeholder="Password" type="password" onChange={this.onChange} />
+                                <br></br>
 
+                                {
+                                    this.state.passwordTooShort && (
+                                        <div>
+                                            <p className="errorText">Password invalid, password must be</p>
+                                            <ul>
+                                                <li className="errorText">At least 6 characters in length</li>
+                                            </ul>
+                                        </div>
+                                    )
+                                }
+
+                                <input className="authInput" name="email" placeholder="Email" type="text" onChange={this.onChange} />
+                                <br></br>
+                                <div style={{marginTop: "35px", width:"414px", marginLeft:"auto", marginRight:"auto"}}>
+                                    <select style={{width:"75px", marginRight:"10px", height:"44px", float:"left"}} name="countryCode" value={this.state.countryCode}
+                                            onChange={this.onChange}>
+                                        <option value="+353">+353</option>
+                                        <option value="+44">+44</option>
+                                    </select>
+                                    <input style={{float:"left", width:"314px"}} name="sevenDigitPhoneNumber" placeholder="Phone Number" type="text" onChange={this.onChange} />
+                                    <br></br>
+                                </div>
+
+
+
+                                <button type="submit" className="authButton" onClick={this.signUp}>Sign Up</button>
+                            </form>
                             {
-                                this.state.passwordInvalidParameter && (
+                                this.state.phoneNumberIncorrectFormat && (
                                     <div>
-                                        <p>Password invalid, password must be</p>
-                                        <ul>
-                                            <li>At least 6 characters in length</li>
-                                        </ul>
+                                        <p className="errorText">Phone number incorrectly formatted</p>
                                     </div>
                                 )
                             }
-
-                            <button onClick={this.signUp}>Sign Up</button>
                         </div>
                     )   
                 }

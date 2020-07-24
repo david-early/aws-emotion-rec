@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Amplify, { Auth } from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { Route, Redirect, withRouter, Switch, BrowserRouter as Router } from 'react-router-dom'
 
 import Authenticator from './authenticator'

@@ -38,7 +38,7 @@ class Authenticator extends React.Component {
                 </button>
                 <button onMouseEnter={this.mouseEnter} style={ !this.state.showSignIn ? activeMenuSwitchButton : menuSwitchButton}
                         onClick={() => this.switchState(false)}>
-                        Sign Up
+                        Don't have an account? Sign Up here
                 </button>
             </div>
         )

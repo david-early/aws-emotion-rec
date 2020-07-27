@@ -53,7 +53,6 @@ class SignIn extends React.Component {
                     <input className="authInput" name="password" type="password" onChange={this.onChange} placeholder="Password" />
                     <br></br>
 
-
                     {
                         this.state.incorrectPassword && (
                             <div>

@@ -74,7 +74,7 @@ class AccountConfirmation extends React.Component {
                 {
                     this.state.authenticationConfirmed && (
                         <div style={{marginTop: "10px"}}>
-                            <img style={{height: "100px", width: "auto"}} src={tick} alt="Account confirmation success" />
+                            <img className="greenTickStyle" src={tick} alt="Account confirmation success" />
                             <p>Account confirmation complete, click sign in to continue</p>
                         </div>
                     )
@@ -84,16 +84,5 @@ class AccountConfirmation extends React.Component {
     }
 
 }
-
-const styles = {
-    formButton: {
-        width: "200px",
-        height: "50px",
-        display: "inline-block",
-        verticalAlign: "top"
-    }
-}
-
-const { formButton } = styles;
 
 export default withRouter(AccountConfirmation)

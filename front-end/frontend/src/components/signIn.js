@@ -77,8 +77,6 @@ class SignIn extends React.Component {
 
                 </form>
 
-                <span>Forgot your password?</span>
-
                 {
                     this.state.userNotConfirmedException && (
                         <div> 

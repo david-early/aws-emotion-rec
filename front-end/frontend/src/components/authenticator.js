@@ -13,7 +13,6 @@ class Authenticator extends React.Component {
     }
 
     updateStateVariable = (stateVariable, value) => {
-        console.log([stateVariable])
         this.setState({
             [stateVariable] : value
         })
@@ -47,7 +46,6 @@ class Authenticator extends React.Component {
                 }
 
                 <button onMouseEnter={this.mouseEnter} style={ this.state.showSignIn ? activeMenuSwitchButton : menuSwitchButton} 
-                        // onClick={() => this.flipShowSignUpState(true)  }>
                         onClick={() => { 
                                 this.updateStateVariable("showSignUp", false);
                                 this.updateStateVariable("showSignIn", true);

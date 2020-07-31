@@ -84,3 +84,8 @@ body  {
 .errorText {
   color: #ff0033
 }
+
+.greenTickStyle {
+  height: 100px;
+  width: auto
+}

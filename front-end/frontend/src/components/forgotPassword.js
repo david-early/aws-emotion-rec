@@ -78,6 +78,7 @@ class ForgotPassword extends React.Component {
                     this.state.passwordSuccessfullyReset && (
                         <div>
                             <img className="greenTickStyle" src={tick} alt="Password Reset Confirmed" />
+                            <br></br>
                             <span>Password Reset Confirmed, click sign in below to continue to sign in menu</span>
                         </div>
                     )

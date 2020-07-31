@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 
+import Banner from './banner'
+
 class Home extends React.Component {
     state = {
         username: ""
@@ -20,7 +22,8 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={appStyle}>
+                <Banner />
                 <h1>Welcome home {this.state.username}</h1>
                 <Link to="/dashboard" label="dashboard" >Dashboard</Link>
                 <p onClick={() => {
@@ -35,5 +38,16 @@ class Home extends React.Component {
         )
     }
 }
+
+const styles = {
+    appStyle: {
+        width: "90%",
+        marginLeft: "auto",
+        marginRight: "auto",
+        backgroundColor: "#f7edf0"
+    }
+}
+
+const { appStyle } = styles;
 
 export default withRouter(Home)

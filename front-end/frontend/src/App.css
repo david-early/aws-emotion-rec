@@ -89,3 +89,18 @@ body  {
   height: 100px;
   width: auto
 }
+
+.bannerButton {
+  background-color: #f7edf0;
+  color: #1b2f33;
+  height: 60px;
+  min-width: 125px;
+  border: solid 1px;
+  border-color: #f7edf0;
+  font-size: 20px;
+}
+
+.bannerButton:hover {
+  border: solid 1px;
+  border-color: #1b2f33;
+}

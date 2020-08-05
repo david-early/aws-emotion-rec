@@ -30,7 +30,7 @@ class Banner extends React.Component {
 const styles = {
     bannerStyle: {
         width: "100%",
-        backgroundColor: "#f7edf0",
+        backgroundColor: "#e54f6d",
         height: "60px",
         borderBottom: "solid 1px",
         borderColor: "#1b2f33"

@@ -24,6 +24,16 @@ class Home extends React.Component {
         return (
             <div style={appStyle}>
                 <Banner />
+                <div style={postBannerStyle}>
+                    <div style={postBannerHeader}>
+                        <h2>Most Recent Presentation</h2>
+                    </div>
+
+                    <div style={postBannerButtons}>
+                        <p>Presentation History</p>
+                    </div>
+                </div>
+
                 <h1>Welcome home {this.state.username}</h1>
                 <Link to="/dashboard" label="dashboard" >Dashboard</Link>
                 <p onClick={() => {
@@ -45,9 +55,28 @@ const styles = {
         marginLeft: "auto",
         marginRight: "auto",
         backgroundColor: "#f7edf0"
+    },
+    postBannerStyle: {
+        height: "80px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        borderBottom: "1px solid",
+        textAlign: "center"
+    },
+    postBannerButtons: {
+        float: "right",
+        height: "100%",
+        width: "30%",
+        borderLeft: "1px solid"
+    },
+    postBannerHeader: {
+        width: "70%",
+        height: "100%",
     }
 }
 
-const { appStyle } = styles;
+const { appStyle, postBannerStyle, postBannerButtons, postBannerHeader } = styles;
 
 export default withRouter(Home)

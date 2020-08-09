@@ -22,6 +22,8 @@ class Banner extends React.Component {
                 <Link to="/" label="Home"> <button className="bannerButton" style={{float: "left"}}>Home</button> </Link>
                 <button className="bannerButton" onClick={this.signOut} style={{float: "right"}}>Sign Out</button> 
                 <button className="bannerButton" style={{float: "right"}}>My Account</button>
+                <button className="bannerButton" style={{float: "right"}}>Presentation History</button>
+                <button className="callToActionBannerButton" style={{float: "left"}}>Create New Presentation</button>
             </div>
         )
     }
@@ -30,10 +32,12 @@ class Banner extends React.Component {
 const styles = {
     bannerStyle: {
         width: "100%",
-        backgroundColor: "#e54f6d",
+        backgroundColor: "#3f88c5",
         height: "60px",
         borderBottom: "solid 1px",
-        borderColor: "#1b2f33"
+        borderColor: "#1b2f33",
+        paddingTop: "10px",
+        paddingBottom: "10px"
     },
 }
 

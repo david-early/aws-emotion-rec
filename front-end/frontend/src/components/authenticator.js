@@ -94,7 +94,7 @@ const styles = {
     },
     activeMenuSwitchButton : {
         height: "60px",
-        background: "#e54f6d",
+        background: "#E5446D",
         width: "33.3%",
         border: "none",
         borderTop: "1px solid",

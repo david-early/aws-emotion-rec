@@ -91,16 +91,48 @@ body  {
 }
 
 .bannerButton {
-  background-color: #e54f6d;
-  color: #1b2f33;
+  background-color: #3f88c5;
+  color: #F7EDF0;
   height: 60px;
   min-width: 125px;
-  border: hidden;
-  /* border-color: #f7edf0; */
+  border: 1px hidden;
+  border-radius: 10px;
   font-size: 20px;
+  margin-left: 10px;
 }
 
 .bannerButton:hover {
-  border: solid 1px;
+  border: 1px solid;
   border-color: #1b2f33;
+}
+
+.callToActionBannerButton {
+  min-width: 125px;
+  height: 60px;
+  border:hidden;
+  font-size: 20px;
+  color: #F7EDF0;
+  background-color: #E5446D;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.callToActionBannerButton:hover {
+  border: 1px solid;
+}
+
+.postBannerButton {
+  width: 50%;
+  background-color: #3f88c5;
+  border: hidden;
+  height: 100%;
+  font-size: 20px;
+  border-left: 1px solid;
+  border-color: black;
+  color: #f7edf0;
+  opacity: 0.85;
+}
+
+.postBannerButton:hover {
+  opacity: 1;
 }

@@ -5,6 +5,7 @@ import { Route, Redirect, withRouter, Switch, BrowserRouter as Router } from 're
 import Authenticator from './authenticator'
 import Dashboard from './dashboard'
 import Home from './home'
+import NewPresentation from './newPresentation'
 
 class PrivateRoute extends Component {
     state = {
@@ -67,6 +68,7 @@ const Routes = () => (
             <Route exact path='/auth' component={Authenticator} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <PrivateRoute exact path='/' component={Home} />
+            <PrivateRoute exact path="/new-presentation" component={NewPresentation} />
         </Switch>
     </Router>
 )

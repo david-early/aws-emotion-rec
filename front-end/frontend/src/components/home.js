@@ -22,7 +22,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div style={appStyle}>
+            <div className="main">
                 <Banner />
                 <div style={postBannerStyle}>
                     <div style={postBannerHeader}>
@@ -50,12 +50,6 @@ class Home extends React.Component {
 }
 
 const styles = {
-    appStyle: {
-        width: "90%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        backgroundColor: "#f7edf0"
-    },
     postBannerStyle: {
         height: "80px",
         display: "flex",
@@ -77,6 +71,6 @@ const styles = {
     }
 }
 
-const { appStyle, postBannerStyle, postBannerButtons, postBannerHeader } = styles;
+const { postBannerStyle, postBannerButtons, postBannerHeader } = styles;
 
 export default withRouter(Home)

@@ -23,7 +23,7 @@ class Banner extends React.Component {
                 <button className="bannerButton" onClick={this.signOut} style={{float: "right"}}>Sign Out</button> 
                 <button className="bannerButton" style={{float: "right"}}>My Account</button>
                 <button className="bannerButton" style={{float: "right"}}>Presentation History</button>
-                <button className="callToActionBannerButton" style={{float: "left"}}>Create New Presentation</button>
+                <Link to="/new-presentation"> <button className="callToActionBannerButton" style={{float: "left"}}>Create New Presentation</button> </Link>
             </div>
         )
     }

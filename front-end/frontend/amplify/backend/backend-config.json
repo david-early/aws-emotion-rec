@@ -7,10 +7,6 @@
 			"customAuth": false
 		}
 	},
-	"storage": {
-		"audienceImage": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+	"storage": {},
+	"function": {}
 }

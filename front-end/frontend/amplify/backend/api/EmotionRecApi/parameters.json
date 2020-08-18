@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "EmotionRecApi",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authfrontend5aa52460",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

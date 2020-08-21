@@ -1,12 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
       id
-      name
-      posts {
+      presentations {
         nextToken
         startedAt
       }
@@ -18,12 +17,11 @@ export const onCreateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
-      name
-      posts {
+      presentations {
         nextToken
         startedAt
       }
@@ -35,12 +33,11 @@ export const onUpdateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
-      name
-      posts {
+      presentations {
         nextToken
         startedAt
       }
@@ -52,156 +49,111 @@ export const onDeleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreatePresentation = /* GraphQL */ `
+  subscription OnCreatePresentation($owner: String!) {
+    onCreatePresentation(owner: $owner) {
       id
-      title
-      blogID
-      blog {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      comments {
+      userId
+      createdAt
+      presentationSlots {
         nextToken
         startedAt
       }
       _version
       _deleted
       _lastChangedAt
-      createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdatePresentation = /* GraphQL */ `
+  subscription OnUpdatePresentation($owner: String!) {
+    onUpdatePresentation(owner: $owner) {
       id
-      title
-      blogID
-      blog {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      comments {
+      userId
+      createdAt
+      presentationSlots {
         nextToken
         startedAt
       }
       _version
       _deleted
       _lastChangedAt
-      createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeletePresentation = /* GraphQL */ `
+  subscription OnDeletePresentation($owner: String!) {
+    onDeletePresentation(owner: $owner) {
       id
-      title
-      blogID
-      blog {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      comments {
+      userId
+      createdAt
+      presentationSlots {
         nextToken
         startedAt
       }
       _version
       _deleted
       _lastChangedAt
-      createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreatePresentationSlot = /* GraphQL */ `
+  subscription OnCreatePresentationSlot($owner: String!) {
+    onCreatePresentationSlot(owner: $owner) {
       id
-      postID
-      post {
-        id
-        title
-        blogID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      content
+      presentationID
+      speech
+      emotions
+      timestamp
+      base64
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdatePresentationSlot = /* GraphQL */ `
+  subscription OnUpdatePresentationSlot($owner: String!) {
+    onUpdatePresentationSlot(owner: $owner) {
       id
-      postID
-      post {
-        id
-        title
-        blogID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      content
+      presentationID
+      speech
+      emotions
+      timestamp
+      base64
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeletePresentationSlot = /* GraphQL */ `
+  subscription OnDeletePresentationSlot($owner: String!) {
+    onDeletePresentationSlot(owner: $owner) {
       id
-      postID
-      post {
-        id
-        title
-        blogID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      content
+      presentationID
+      speech
+      emotions
+      timestamp
+      base64
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

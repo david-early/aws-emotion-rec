@@ -1,44 +1,22 @@
-"""
-type Blog @model {
-  id: ID!
-  name: String!
-  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
-}
-
-type Post @model 
-@key(name: "byBlog", fields: ["blogID"]) {
-  id: ID!
-  title: String!
-  blogID: ID!
-  blog: Blog @connection(fields: ["blogID"])
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
-}
-
-type Comment @model 
-@key(name: "byPost", fields: ["postID", "content"]) {
-  id: ID!
-  postID: ID!
-  post: Post @connection(fields: ["postID"])
-  content: String!
-}
-"""
-
 type User @model {
   id: ID!
   presentations: [Presentation] @connection(keyName: "byUser", fields: ["id"])
 }
 
 type Presentation @model 
-@key(name: "byUser", fields: ["userId", "createdAt"]) {
+@key(name: "byUser", fields: ["userId"], queryField: "presentationsByUserId")
+@auth(rules: [{ allow: owner }])
+{
   id: ID!
   userId: ID!
-  user: User @connection(fields: ["userId"])
   createdAt: String!
   presentationSlots: [PresentationSlot] @connection(keyName: "byPresentation", fields: ["id"])
 }
 
 type PresentationSlot @model 
-@key(name: "byPresentation", fields: ["presentationID", "timestamp"]) {
+@key(name: "byPresentation", fields: ["presentationID"], queryField: "presentationSlotsByPresentationId")
+@auth(rules: [{ allow: owner }]) 
+{
   id: ID!
   presentationID: ID!
   speech: String

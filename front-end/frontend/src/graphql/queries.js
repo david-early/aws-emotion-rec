@@ -1,14 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncBlogs = /* GraphQL */ `
-  query SyncBlogs(
-    $filter: ModelBlogFilterInput
+export const syncUsers = /* GraphQL */ `
+  query SyncUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncBlogs(
+    syncUsers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -16,7 +16,6 @@ export const syncBlogs = /* GraphQL */ `
     ) {
       items {
         id
-        name
         _version
         _deleted
         _lastChangedAt
@@ -28,12 +27,11 @@ export const syncBlogs = /* GraphQL */ `
     }
   }
 `;
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
-      name
-      posts {
+      presentations {
         nextToken
         startedAt
       }
@@ -45,16 +43,15 @@ export const getBlog = /* GraphQL */ `
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
         _version
         _deleted
         _lastChangedAt
@@ -66,14 +63,14 @@ export const listBlogs = /* GraphQL */ `
     }
   }
 `;
-export const syncPosts = /* GraphQL */ `
-  query SyncPosts(
-    $filter: ModelPostFilterInput
+export const syncPresentations = /* GraphQL */ `
+  query SyncPresentations(
+    $filter: ModelPresentationFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncPosts(
+    syncPresentations(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -81,76 +78,67 @@ export const syncPosts = /* GraphQL */ `
     ) {
       items {
         id
-        title
-        blogID
+        userId
+        createdAt
         _version
         _deleted
         _lastChangedAt
-        createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getPresentation = /* GraphQL */ `
+  query GetPresentation($id: ID!) {
+    getPresentation(id: $id) {
       id
-      title
-      blogID
-      blog {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      comments {
+      userId
+      createdAt
+      presentationSlots {
         nextToken
         startedAt
       }
       _version
       _deleted
       _lastChangedAt
-      createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listPresentations = /* GraphQL */ `
+  query ListPresentations(
+    $filter: ModelPresentationFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        blogID
+        userId
+        createdAt
         _version
         _deleted
         _lastChangedAt
-        createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
     }
   }
 `;
-export const syncComments = /* GraphQL */ `
-  query SyncComments(
-    $filter: ModelCommentFilterInput
+export const syncPresentationSlots = /* GraphQL */ `
+  query SyncPresentationSlots(
+    $filter: ModelPresentationSlotFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncComments(
+    syncPresentationSlots(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -158,59 +146,129 @@ export const syncComments = /* GraphQL */ `
     ) {
       items {
         id
-        postID
-        content
+        presentationID
+        speech
+        emotions
+        timestamp
+        base64
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getPresentationSlot = /* GraphQL */ `
+  query GetPresentationSlot($id: ID!) {
+    getPresentationSlot(id: $id) {
       id
-      postID
-      post {
-        id
-        title
-        blogID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      content
+      presentationID
+      speech
+      emotions
+      timestamp
+      base64
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listPresentationSlots = /* GraphQL */ `
+  query ListPresentationSlots(
+    $filter: ModelPresentationSlotFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPresentationSlots(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
-        postID
-        content
+        presentationID
+        speech
+        emotions
+        timestamp
+        base64
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const presentationsByUserId = /* GraphQL */ `
+  query PresentationsByUserId(
+    $userId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelPresentationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    presentationsByUserId(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        createdAt
+        _version
+        _deleted
+        _lastChangedAt
+        updatedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const presentationSlotsByPresentationId = /* GraphQL */ `
+  query PresentationSlotsByPresentationId(
+    $presentationID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelPresentationSlotFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    presentationSlotsByPresentationId(
+      presentationID: $presentationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        presentationID
+        speech
+        emotions
+        timestamp
+        base64
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
       startedAt

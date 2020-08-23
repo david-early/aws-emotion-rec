@@ -9,12 +9,22 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       presentations {
+        items {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -28,12 +38,22 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       presentations {
+        items {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -47,12 +67,22 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       presentations {
+        items {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -65,17 +95,42 @@ export const createPresentation = /* GraphQL */ `
   ) {
     createPresentation(input: $input, condition: $condition) {
       id
-      userId
       createdAt
       presentationSlots {
+        items {
+          id
+          speech
+          emotions
+          timestamp
+          createdAt
+          base64
+          presentationId
+          presentation {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      userId
+      user {
+        id
+        presentations {
+          items {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -86,17 +141,42 @@ export const updatePresentation = /* GraphQL */ `
   ) {
     updatePresentation(input: $input, condition: $condition) {
       id
-      userId
       createdAt
       presentationSlots {
+        items {
+          id
+          speech
+          emotions
+          timestamp
+          createdAt
+          base64
+          presentationId
+          presentation {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      userId
+      user {
+        id
+        presentations {
+          items {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -107,17 +187,42 @@ export const deletePresentation = /* GraphQL */ `
   ) {
     deletePresentation(input: $input, condition: $condition) {
       id
-      userId
       createdAt
       presentationSlots {
+        items {
+          id
+          speech
+          emotions
+          timestamp
+          createdAt
+          base64
+          presentationId
+          presentation {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      userId
+      user {
+        id
+        presentations {
+          items {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -128,17 +233,40 @@ export const createPresentationSlot = /* GraphQL */ `
   ) {
     createPresentationSlot(input: $input, condition: $condition) {
       id
-      presentationID
       speech
       emotions
       timestamp
-      base64
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      base64
+      presentationId
+      presentation {
+        id
+        createdAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
+        userId
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -149,17 +277,40 @@ export const updatePresentationSlot = /* GraphQL */ `
   ) {
     updatePresentationSlot(input: $input, condition: $condition) {
       id
-      presentationID
       speech
       emotions
       timestamp
-      base64
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      base64
+      presentationId
+      presentation {
+        id
+        createdAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
+        userId
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -170,17 +321,40 @@ export const deletePresentationSlot = /* GraphQL */ `
   ) {
     deletePresentationSlot(input: $input, condition: $condition) {
       id
-      presentationID
       speech
       emotions
       timestamp
-      base64
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      base64
+      presentationId
+      presentation {
+        id
+        createdAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
+        userId
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;

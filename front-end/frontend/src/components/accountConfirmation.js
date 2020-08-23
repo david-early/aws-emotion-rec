@@ -1,10 +1,14 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Auth } from 'aws-amplify'
+import Amplify, { API, graphqlOperation, Auth} from 'aws-amplify';
 
+import { createUser } from '../graphql/mutations'
+import { listUsers } from '../graphql/queries'
+import awsconfig from '../aws-exports'
 import tick from '../images/greenTick.png'
-
 import '../App.css'
+
+Amplify.configure(awsconfig)
 
 class AccountConfirmation extends React.Component {
 
@@ -24,17 +28,27 @@ class AccountConfirmation extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    async confirmSignUp(e) {
+    confirmSignUp(e) {
         e.preventDefault()
-        console.log("username = ", this.props.username);
-        console.log("authcode = ", this.state.authCode)
-        try {
-            await Auth.confirmSignUp(this.props.username, this.state.authCode)
-            this.setState({authenticationConfirmed: true, authCodeResent: false})
-        }
-        catch (err) {
-            console.log('error confirming signing up: ', err)
-        }
+
+        Auth.confirmSignUp(this.props.username, this.state.authCode).then(() => {
+            Auth.signIn(this.props.username, this.props.password).then(() => {
+                Auth.currentUserInfo().then((userAuthData) => {
+                    console.log("userAuthData = ", userAuthData)
+                    const uuid = userAuthData.attributes.sub
+                    const userCreationData = { id: uuid }
+                    API.graphql(graphqlOperation(createUser, { input: userCreationData})).then(() => {
+                        console.log("Finished signup confirmation")
+                        this.setState({authenticationConfirmed: true, authCodeResent: false})
+                        API.graphql(graphqlOperation(listUsers)).then((data) => {
+                            console.log(data);
+                        })
+                    })  
+                }) 
+            })
+ 
+        })
+
     }
 
     async resendAuthenticationCode(e) {

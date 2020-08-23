@@ -10,7 +10,7 @@
 	"storage": {},
 	"function": {},
 	"api": {
-		"EmotionRecApi": {
+		"emotionRecApi": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

@@ -1,43 +1,27 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncUsers = /* GraphQL */ `
-  query SyncUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUsers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
       presentations {
+        items {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -52,42 +36,19 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        _version
-        _deleted
-        _lastChangedAt
+        presentations {
+          items {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          nextToken
+        }
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPresentations = /* GraphQL */ `
-  query SyncPresentations(
-    $filter: ModelPresentationFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPresentations(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        userId
-        createdAt
-        _version
-        _deleted
-        _lastChangedAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -95,17 +56,42 @@ export const getPresentation = /* GraphQL */ `
   query GetPresentation($id: ID!) {
     getPresentation(id: $id) {
       id
-      userId
       createdAt
       presentationSlots {
+        items {
+          id
+          speech
+          emotions
+          timestamp
+          createdAt
+          base64
+          presentationId
+          presentation {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          updatedAt
+        }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      userId
+      user {
+        id
+        presentations {
+          items {
+            id
+            createdAt
+            userId
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -118,48 +104,32 @@ export const listPresentations = /* GraphQL */ `
     listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        createdAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
         userId
-        createdAt
-        _version
-        _deleted
-        _lastChangedAt
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
         updatedAt
-        owner
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPresentationSlots = /* GraphQL */ `
-  query SyncPresentationSlots(
-    $filter: ModelPresentationSlotFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPresentationSlots(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        presentationID
-        speech
-        emotions
-        timestamp
-        base64
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -167,17 +137,40 @@ export const getPresentationSlot = /* GraphQL */ `
   query GetPresentationSlot($id: ID!) {
     getPresentationSlot(id: $id) {
       id
-      presentationID
       speech
       emotions
       timestamp
-      base64
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      base64
+      presentationId
+      presentation {
+        id
+        createdAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
+        userId
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        updatedAt
+      }
       updatedAt
-      owner
     }
   }
 `;
@@ -194,33 +187,44 @@ export const listPresentationSlots = /* GraphQL */ `
     ) {
       items {
         id
-        presentationID
         speech
         emotions
         timestamp
-        base64
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
+        base64
+        presentationId
+        presentation {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         updatedAt
-        owner
       }
       nextToken
-      startedAt
     }
   }
 `;
-export const presentationsByUserId = /* GraphQL */ `
-  query PresentationsByUserId(
+export const presentationsByUser = /* GraphQL */ `
+  query PresentationsByUser(
     $userId: ID
+    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelPresentationFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    presentationsByUserId(
+    presentationsByUser(
       userId: $userId
+      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -228,29 +232,47 @@ export const presentationsByUserId = /* GraphQL */ `
     ) {
       items {
         id
-        userId
         createdAt
-        _version
-        _deleted
-        _lastChangedAt
+        presentationSlots {
+          items {
+            id
+            speech
+            emotions
+            timestamp
+            createdAt
+            base64
+            presentationId
+            updatedAt
+          }
+          nextToken
+        }
+        userId
+        user {
+          id
+          presentations {
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
         updatedAt
-        owner
       }
       nextToken
-      startedAt
     }
   }
 `;
-export const presentationSlotsByPresentationId = /* GraphQL */ `
-  query PresentationSlotsByPresentationId(
-    $presentationID: ID
+export const slotsByPresentation = /* GraphQL */ `
+  query SlotsByPresentation(
+    $presentationId: ID
+    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelPresentationSlotFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    presentationSlotsByPresentationId(
-      presentationID: $presentationID
+    SlotsByPresentation(
+      presentationId: $presentationId
+      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -258,20 +280,29 @@ export const presentationSlotsByPresentationId = /* GraphQL */ `
     ) {
       items {
         id
-        presentationID
         speech
         emotions
         timestamp
-        base64
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
+        base64
+        presentationId
+        presentation {
+          id
+          createdAt
+          presentationSlots {
+            nextToken
+          }
+          userId
+          user {
+            id
+            createdAt
+            updatedAt
+          }
+          updatedAt
+        }
         updatedAt
-        owner
       }
       nextToken
-      startedAt
     }
   }
 `;

@@ -8,11 +8,6 @@ import AccountConfirmation from './accountConfirmation'
 
 class SignUp extends React.Component {
 
-    constructor() {
-        super()
-        this.confirmSignUp = this.confirmSignUp.bind(this)
-    }
-
     state = {
         username: "", 
         password: '',
@@ -55,16 +50,6 @@ class SignUp extends React.Component {
             }
         })
       }
-
-    async confirmSignUp() {
-        try {
-            await Auth.confirmSignUp(this.state.username, this.state.authCode)
-            this.setState({authenticationConfirmed: true})
-        }
-        catch (err) {
-            console.log('error confirming signing up: ', err)
-        }
-    }
 
     render() {
         const { showConfirmation } = this.state
@@ -121,7 +106,7 @@ class SignUp extends React.Component {
                     showConfirmation && (
                         <div>
                             <p>Confirmation code sent to {this.state.email}</p>
-                            <AccountConfirmation username={this.state.username} />
+                            <AccountConfirmation username={this.state.username} password={this.state.password} />
                         </div>
                     )
                 }

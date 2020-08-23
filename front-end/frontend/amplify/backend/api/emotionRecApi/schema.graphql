@@ -1,0 +1,39 @@
+type User @model {
+  id: ID!
+  presentations: [Presentation] @connection(name: "PresentationForUser", sortField: "createdAt")
+}
+
+type Presentation @model 
+@key(name: "ByUser", fields: ["userId", "createdAt"], queryField: "presentationsByUser")
+{
+  id: ID!
+  createdAt: String!
+  presentationSlots: [PresentationSlot] @connection(name: "SlotsForPresentation", sortField: "createdAt")
+  userId: ID
+  user: User @connection(name: "PresentationForUser", sortField: "createdAt")
+}
+
+type PresentationSlot @model 
+@key(name: "ByPresentation", fields: ["presentationId", "createdAt"], queryField:"SlotsByPresentation")
+{
+  id: ID!
+  speech: String
+  emotions: [Emotion]
+  timestamp: Int!
+  createdAt: String
+  base64: String!
+  presentationId: ID!
+  presentation: Presentation @connection(name: "SlotsForPresentation", sortField: "createdAt")
+}
+
+enum Emotion {
+  HAPPY
+  SAD
+  ANGRY
+  CONFUSED
+  DISGUSTED
+  SURPRISED
+  CALM
+  UNKNOWN
+  FEAR
+}

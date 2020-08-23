@@ -1,6 +1,6 @@
 projects:
-  EmotionRecApi:
-    schemaPath: amplify/backend/api/EmotionRecApi/build/schema.graphql
+  emotionRecApi:
+    schemaPath: amplify/backend/api/emotionRecApi/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -12,7 +12,7 @@ projects:
         docsFilePath: src/graphql
         region: eu-west-1
         apiId: null
-        maxDepth: 2
+        maxDepth: 4
 extensions:
   amplify:
     version: 3
